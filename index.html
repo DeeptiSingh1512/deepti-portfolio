@@ -572,26 +572,42 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ── Contact Form — Netlify serverless submission ─────────────
+// ── Contact Form — Netlify Forms submission ──────────────────
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   const msg = document.getElementById('formMsg');
   const form = e.target;
 
+  const name    = document.getElementById('name').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const subject = document.getElementById('subject').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!name || !email || !message) {
+    msg.textContent = '✗ Please fill in your name, email, and message.';
+    msg.className = 'form-msg error';
+    return;
+  }
+
   btn.disabled = true;
   btn.textContent = 'Sending…';
   msg.className = 'form-msg';
   msg.style.display = 'none';
 
-  const formData = new FormData(form);
+  const body = new URLSearchParams({
+    'form-name': 'contact',
+    'name':      name,
+    'email':     email,
+    'subject':   subject,
+    'message':   message,
+  }).toString();
 
   try {
-    // Netlify Forms submission (works on Netlify — uses built-in form handling)
     const res = await fetch('/', {
-      method: 'POST',
+      method:  'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString(),
+      body:    body,
     });
 
     if (res.ok) {
@@ -599,17 +615,12 @@ document.getElementById('contactForm').addEventListener('submit', async function
       msg.className = 'form-msg success';
       form.reset();
     } else {
-      throw new Error('Form submission failed');
+      throw new Error('Status ' + res.status);
     }
   } catch (err) {
-    // Fallback: open mail client with prefilled message
-    const name = formData.get('name') || '';
-    const email = formData.get('email') || '';
-    const subject = encodeURIComponent(formData.get('subject') || 'Portfolio Contact');
-    const body = encodeURIComponent(`From: ${name} (${email})\n\n${formData.get('message') || ''}`);
-    window.location.href = `mailto:singhbagheldeepti1@gmail.com?subject=${subject}&body=${body}`;
-    msg.textContent = 'Opening your email client as fallback…';
-    msg.className = 'form-msg success';
+    console.error('Form error:', err);
+    msg.textContent = '✗ Could not send. Please email: singhbagheldeepti1@gmail.com';
+    msg.className = 'form-msg error';
   }
 
   btn.disabled = false;
