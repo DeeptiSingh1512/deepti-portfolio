@@ -2,8 +2,29 @@
 // Serverless function — runs on Netlify's edge, no server needed
 
 exports.handler = async (event) => {
+  // Handle CORS preflight
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Content-Type": "application/json",
+      },
+      body: "",
+    };
+  }
+
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return {
+      statusCode: 405,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ error: "Method Not Allowed" }),
+    };
   }
 
   const headers = {
@@ -12,7 +33,18 @@ exports.handler = async (event) => {
   };
 
   try {
-    const { name, email, subject, message } = JSON.parse(event.body);
+    let body;
+    try {
+      body = JSON.parse(event.body);
+    } catch {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: "Invalid JSON in request body" }),
+      };
+    }
+
+    const { name, email, subject, message } = body;
 
     if (!name || !email || !message) {
       return {
@@ -60,7 +92,7 @@ exports.handler = async (event) => {
     */
 
     // Log for Netlify function logs (visible in dashboard)
-    console.log(`New contact from ${name} <${email}>: ${subject}`);
+    console.log(`New contact from ${name} <${email}>: ${subject || '(no subject)'}`);
 
     return {
       statusCode: 200,
