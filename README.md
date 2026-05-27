@@ -91,7 +91,7 @@ No code changes needed — it works automatically on Netlify!
 |---|---|
 | Your photo | Replace `assets/deepti.jpg` |
 | LinkedIn URL | Search `linkedin.com/in/deepti-singh` in `index.html` |
-| Recommendation text | Find `<!-- RECOMMENDATIONS -->` section |
+| Recommendation text | (removed — Testimonials section deleted) |
 | Project GitHub links | Find `proj-links` sections |
 | Add new project | Copy a `.proj-card` block and update content |
 

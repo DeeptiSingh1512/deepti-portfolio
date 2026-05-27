@@ -562,67 +562,7 @@
       border-color: var(--accent);
     }
 
-    /* RECOMMENDATIONS */
-    .recs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .rec-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.75rem;
-    }
-
-    .rec-quote {
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      opacity: 0.3;
-      line-height: 1;
-    }
-
-    .rec-text {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .rec-author {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .rec-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .rec-author-info { display: flex; flex-direction: column; }
-    .rec-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-dark);
-    }
-
-    .rec-title {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+    /* Testimonials styles removed */
 
     /* CONTACT */
     .contact-grid {
@@ -802,7 +742,7 @@
       .projects-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .about-highlights { grid-template-columns: 1fr; }
-      .recs-grid { grid-template-columns: 1fr; }
+      /* Testimonials responsive rule removed */
       .contact-grid { grid-template-columns: 1fr; }
     }
 
@@ -825,7 +765,6 @@
         <a href="#skills" class="nav-item">Skills</a>
         <a href="#experience" class="nav-item">Experience</a>
         <a href="#projects" class="nav-item">Projects</a>
-        <a href="#recommendations" class="nav-item">Recommendations</a>
         <a href="#contact" class="nav-item">Contact</a>
       </nav>
       <div class="sidebar-contact">
@@ -1087,50 +1026,7 @@
         </div>
       </section>
 
-      <!-- RECOMMENDATIONS -->
-      <section id="recommendations">
-        <div class="section-header">
-          <div class="section-label">Testimonials</div>
-          <h2 class="section-title">What People Say</h2>
-        </div>
-        <div class="recs-grid">
-          <div class="rec-card">
-            <div class="rec-quote">"</div>
-            <p class="rec-text">Deepti demonstrated exceptional dedication at Gsquare IT Services. Her ability to grasp n8n automation concepts and translate them into reliable, production-ready workflows was outstanding. She delivered the Recruitment Automation System ahead of schedule.</p>
-            <div class="rec-author">
-              <div class="rec-avatar">GS</div>
-              <div class="rec-author-info">
-                <div class="rec-name">Gsquare IT Services</div>
-                <div class="rec-title">Internship Supervisor</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="rec-card">
-            <div class="rec-quote">"</div>
-            <p class="rec-text">Deepti's WFH discipline, combined with solid technical understanding of webhook-based automation and API integrations, made her a reliable contributor from day one. She works independently without any drop in output quality.</p>
-            <div class="rec-author">
-              <div class="rec-avatar">R</div>
-              <div class="rec-author-info">
-                <div class="rec-name">Team Lead</div>
-                <div class="rec-title">Technical Recommendation</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="rec-card">
-            <div class="rec-quote">"</div>
-            <p class="rec-text">Deepti's embrace of AI-assisted development sets her apart. She doesn't just prompt — she validates, refines, and takes full ownership of the output. That critical thinking combined with full-stack skills makes her someone who consistently ships.</p>
-            <div class="rec-author">
-              <div class="rec-avatar">R</div>
-              <div class="rec-author-info">
-                <div class="rec-name">Mentor</div>
-                <div class="rec-title">Professional Mentor</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <!-- Testimonials section removed -->
 
       <!-- CONTACT -->
       <section id="contact">
